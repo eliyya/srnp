@@ -1,2 +1,2 @@
-# srjsp
-Silly Revolt js Package 
+# Silly Revolt js Package 
+Just a Silly Revolt js Package
