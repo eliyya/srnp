@@ -1,5 +1,7 @@
 import EventEmitter from "events";
 import WebSocket from "@insertish/isomorphic-ws";
+import { UsersManager } from "../managers/UsersManager";
+import axios, { AxiosInstance } from "axios";
 import { ServersManager } from "../managers/ServersManager";
 import { ChannelsManager } from "../managers/ChannelsManager";
 
@@ -20,6 +22,7 @@ export class Client extends EventEmitter {
     private _wsInterval = setInterval(() => {}, 20000000);
     private _wsIntent = 1;
     users = new UsersManager(this);
+    servers = new ServersManager(this);
     api: AxiosInstance;
     apiURL: string;
     token: string = "";
