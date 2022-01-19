@@ -1,26 +1,38 @@
 import EventEmitter from "events";
 import WebSocket from "@insertish/isomorphic-ws";
+import { ServersManager } from "../managers/ServersManager";
+import { ChannelsManager } from "../managers/ChannelsManager";
+
 export interface ClientOptions {
     wsURL?: string;
     token?: string;
+    apiURL?: string;
     reconnect?: boolean
 }
+
 enum WSDataType {
     Ready = "Ready",
 }
+
 export class Client extends EventEmitter {
     ws?: WebSocket;
     wsURL: string;
     private _wsInterval = setInterval(() => {}, 20000000);
     private _wsIntent = 1;
+    users = new UsersManager(this);
+    api: AxiosInstance;
+    apiURL: string;
     token: string = "";
     reconnect: boolean;
     constructor(opt?: ClientOptions) {
         super();
         this.wsURL = opt?.wsURL ?? "wss://ws.revolt.chat?format=json";
+        this.api = axios.create();
+        this.apiURL = opt?.apiURL ?? "https://api.revolt.chat";
         this.reconnect = opt?.reconnect??false
         if (opt?.token) this.token = opt.token;
     }
+
     private _initWS(path: string): Promise<WebSocket> {
         return new Promise<WebSocket>((resolve, reject) => {
             this.ws = new WebSocket(path);
@@ -81,6 +93,11 @@ export class Client extends EventEmitter {
                 process.exit(1);
             }
             this.emit("preparing");
+            this.api = await axios.create({
+                baseURL: this.apiURL,
+                timeout: 1000,
+                headers: { "Content-Type": "application/json", "x-bot-token": this.token },
+            });
             await this._initWS(this.wsURL);
             this.emit("ready", this);
         });
