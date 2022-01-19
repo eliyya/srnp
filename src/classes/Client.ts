@@ -23,6 +23,7 @@ export class Client extends EventEmitter {
     private _wsIntent = 1;
     users = new UsersManager(this);
     servers = new ServersManager(this);
+    channels = new ChannelsManager(this);
     api: AxiosInstance;
     apiURL: string;
     token: string = "";

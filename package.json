@@ -1,6 +1,6 @@
 {
   "name": "srnp",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Just a Silly Revolt Node Package",
   "main": "dist/index.js",
   "scripts": {
