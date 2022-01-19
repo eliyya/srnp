@@ -1,7 +1,7 @@
 {
   "name": "srnp",
   "version": "0.0.3",
-  "description": "Just a Silly Revolt Node Package",
+  "description": "Just a Silly Revolt Node Package for Bots",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
