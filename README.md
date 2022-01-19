@@ -1,2 +1,2 @@
-# Silly Revolt js Package 
-Just a Silly Revolt js Package
+# Silly Revolt Node Package
+Just a Silly Revolt Node Package
