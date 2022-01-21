@@ -14,6 +14,11 @@ export interface ClientOptions {
 
 enum WSDataType {
     Ready = "Ready",
+    Error = 'Error'
+}
+
+enum WSErrorType {
+    InvalidSession = 'InvalidSession'
 }
 
 export class Client extends EventEmitter {
@@ -61,6 +66,8 @@ export class Client extends EventEmitter {
                         // console.log(data.channels);
                         
                         resolve(this.ws??new WebSocket(''));
+                    } else if (data.type === WSDataType.Error && data.error == WSErrorType.InvalidSession) {
+                        throw new Error(data.error)
                     }
                 }
 
@@ -71,7 +78,7 @@ export class Client extends EventEmitter {
                 };
             };
             this.ws.onerror = (err) => {
-                if (!this.reconnect) console.error("WebSocket Error", new Error(err.message));
+                if (!this.reconnect) throw new Error(err.message);
                 else {
                     console.log('Unavivable Socket\nTring in a momment...');
                     setTimeout(()=>{

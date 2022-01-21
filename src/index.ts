@@ -1,1 +1,10 @@
 export * from './classes/Client'
+export * from './classes/Server'
+export * from './classes/User'
+export * from './classes/Channel'
+export * from './classes/TextChannel'
+
+export * from './managers/ChannelsManager'
+export * from './managers/ServersManager'
+export * from './managers/TextChannelsManager'
+export * from './managers/UsersManager'
