@@ -1,6 +1,6 @@
 {
   "name": "srnp",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Just a Silly Revolt Node Package for Bots",
   "main": "dist/index.js",
   "scripts": {
@@ -20,7 +20,7 @@
     "revolt"
   ],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/eliyya/srnp/issues"
   },

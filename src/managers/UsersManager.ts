@@ -28,7 +28,7 @@ export class UsersManager {
                 await user.fetch();
                 if (!this.cache.has(id) || this.cache.get(id)?.partial) this.cache.set(user.id, user);
                 resolve(user);
-            }).catch((err) => console.error(`Axios /users/${id} Error`, new Error(err.message)));
+            }).catch((err) => console.error(`Axios /users/${id} Error on UsersManager`, new Error(err.message)));
         })
     }
 }

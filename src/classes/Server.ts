@@ -1,5 +1,6 @@
 import { Client } from "./Client";
 import { User } from "./User";
+import { MembersManager } from '../managers/MembersManager'
 
 export class Server {
     id: string;
@@ -29,7 +30,12 @@ export class Server {
     analytics?: boolean;
     discoverable?: boolean;
     partial: boolean = true;
+    members: MembersManager;
+
     constructor(data: ServerApiType, client: Client) {
+        client.users.fetch(data.owner).then((user) => {
+            this.owner = user;
+        });
         this.client = client;
         this.ownerId = data.owner
         this.id = data._id;
@@ -45,9 +51,7 @@ export class Server {
         this.roles = data.roles;
         this.defaultPermissions = data.default_permissions;
         this.icon = data.icon;
-        client.users.fetch(data.owner).then((user) => {
-            this.owner = user;
-        });
+        this.members = new MembersManager(this, client);
     }
 
     fetch(): Promise<Server> {
@@ -76,6 +80,7 @@ export class Server {
                     this.analytics = server.analytics;
                     this.discoverable = server.discoverable;
                     this.partial = false;
+                    await this.members.initMembers()
                     resolve(this);
                 })
                 .catch((err) => console.error(`Axios /server/${this.id} Error`, new Error(err.message)))

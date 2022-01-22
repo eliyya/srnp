@@ -28,8 +28,9 @@ export class ServersManager {
             else this.client.api.get("/servers/" + id).then(async (res) => {
                 const server = new Server(res.data, this.client);
                 await server.fetch();
+                if(!this.cache.has(id) || this.cache.get(id)?.partial) this.cache.set(id, server);
                 resolve(server);
-            }).catch((err) => console.error(`Axios /server/${id} Error`, new Error(err.message)));
+            }).catch((err) => console.error(`Axios /servers/${id} Error on ServersManager`, new Error(err.message)));
         });
     }
 }

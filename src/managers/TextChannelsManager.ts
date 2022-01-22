@@ -29,6 +29,7 @@ export class TextChannelsManager {
             else this.client.api.get("/channels/" + id).then(async (res) => {
                 const channel = new TextChannel(res.data, this.client);
                 await channel.fetch();
+                if(!this.cache.has(id) || this.cache.get(id)?.partial) this.cache.set(id, channel);
                 resolve(channel);
             }).catch((err) => console.error(`Axios /channels/${id} Error`, new Error(err.message)));
         });

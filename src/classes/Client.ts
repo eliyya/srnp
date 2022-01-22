@@ -62,8 +62,7 @@ export class Client extends EventEmitter {
                     if (data.type === WSDataType.Ready) {
                         await this.users.initUsers(data.users)
                         await this.servers.initServers(data.servers)
-                        await this.channels.initChannels(data.channels)
-                        // console.log(data.channels);
+                        await this.channels.initChannels(data.channels);
                         
                         resolve(this.ws??new WebSocket(''));
                     } else if (data.type === WSDataType.Error && data.error == WSErrorType.InvalidSession) {
@@ -101,12 +100,11 @@ export class Client extends EventEmitter {
             if (token) this.token = token;
             if(!this.token) {
                 throw new Error('Token required');
-                process.exit(1);
             }
             this.emit("preparing");
             this.api = await axios.create({
                 baseURL: this.apiURL,
-                timeout: 1000,
+                timeout: 5000,
                 headers: { "Content-Type": "application/json", "x-bot-token": this.token },
             });
             await this._initWS(this.wsURL);
