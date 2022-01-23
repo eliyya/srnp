@@ -9,7 +9,7 @@ npm i srnp
 ## Example usage
 ```js
 // Let's import the module and create a client
-const {Client} = require('../srnp/dist/index');
+const {Client} = require('srnp');
 
 const client = new Client();
 
