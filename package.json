@@ -1,6 +1,6 @@
 {
   "name": "srnp",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Just a Silly Revolt Node Package for Bots (Beta)",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
