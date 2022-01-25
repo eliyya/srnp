@@ -1,7 +1,7 @@
 # Silly Revolt Node Package
-Just a Silly Revolt Node Package for Bots
+Just a Silly Revolt Node Package for Bots (beta)
 
-## Instalation
+## Installation
 ```
 npm i srnp
 ```
@@ -29,3 +29,6 @@ client.on('ready', () => {
     console.log({ user, server, channel, member });
 });
 ```
+
+
+

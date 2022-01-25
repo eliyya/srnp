@@ -20,6 +20,11 @@ export class UsersManager {
         })
     }
 
+    /**
+     * Get a user specified by id
+     * @param id the id of the user to fetch
+     * @returns Promise<User>
+     */
     fetch(id: string): Promise<User> {
         return new Promise((resolve, reject) => {
             if (this.cache.has(id) && !this.cache.get(id)?.partial) resolve(this.cache.get(id)!);

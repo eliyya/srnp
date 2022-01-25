@@ -25,6 +25,11 @@ export class ChannelsManager {
         });
     }
 
+    /**
+     * Get a channel specified by id
+     * @param id the id of the channel to fetch
+     * @returns Promise<TextChannel>
+     */
     fetch(id: string): Promise<TextChannel> {
         return new Promise((resolve, reject) => {
             if (this.text.cache.has(id) && !this.text.cache.get(id)?.partial) resolve(this.text.cache.get(id)!);

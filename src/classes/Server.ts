@@ -54,6 +54,10 @@ export class Server {
         this.members = new MembersManager(this, client);
     }
 
+    /**
+     * Fetch this server from the API
+     * @returns Promise<Server>
+     */
     fetch(): Promise<Server> {
         return new Promise((resolve, reject) => {
             this.client.api

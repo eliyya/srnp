@@ -28,4 +28,25 @@ export class Member {
         this.avatar = data.avatar;
         this.client = client;
     }
+
+    /**
+     * Fetch this member from the API
+     * @returns Promise<Member>
+     */
+    fetch(): Promise<Member> {
+        return new Promise((resolve, reject) => {
+            this.client.api
+                .get("/users/" + this.id)
+                .then(async (res) => {
+                    const member = res.data as MemberApiType;
+                    this.user = await this.client.users.fetch(member._id.user);
+                    this.id = member._id.user;
+                    this.roles = member.roles ?? [];
+                    this.nickname = member.nickname;
+                    this.avatar = member.avatar;
+                    resolve(this);
+                })
+                .catch((err) => console.error);
+        });
+    }
 }

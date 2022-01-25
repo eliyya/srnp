@@ -19,6 +19,10 @@ export class TextChannel extends Channel {
         });
     }
 
+    /**
+     * Fetch this channel from the API
+     * @returns Promise<TextChannel>
+     */
     fetch(): Promise<TextChannel> {
         return new Promise((resolve, reject) => {
             this.client.api

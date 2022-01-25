@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# v0.0.7
+
+## Features
+
+- **User:** Added `User` class in the `Client` class; `<client>.user`
+
 # v0.0.6
 
 ## Features

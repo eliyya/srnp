@@ -22,6 +22,11 @@ export class ServersManager {
         });
     }
 
+    /**
+     * Get a server specified by id
+     * @param id the id of the server to fetch
+     * @returns Promise<Server>
+     */
     fetch(id: string): Promise<Server> {
         return new Promise((resolve, reject) => {
             if (this.cache.has(id) && !this.cache.get(id)?.partial) resolve(this.cache.get(id)!);

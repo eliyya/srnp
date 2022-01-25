@@ -28,6 +28,10 @@ export class User {
         this.avatar = data.avatar;
     }
 
+    /**
+     * Fetch this user from the API
+     * @returns Promise<User>
+     */
     fetch(): Promise<User> {
         return new Promise((resolve, reject) => {
             this.client.api

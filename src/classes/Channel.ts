@@ -12,6 +12,10 @@ export class Channel {
         this.type = data.channel_type;
     }
 
+    /**
+     * Fetch this channel from the API
+     * @returns Promise<Channel>
+     */
     fetch(): Promise<Channel> {
         return new Promise((resolve, reject) => {
             this.client.api

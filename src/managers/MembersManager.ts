@@ -30,13 +30,18 @@ export class MembersManager {
         });
     }
 
+    /**
+     * Get a member specified by id
+     * @param id the id of the member to fetch
+     * @returns Promise<Member>
+     */
     fetch(id: string): Promise<Member> {
         return new Promise((resolve, reject) => {
             if (this.cache.has(id) && !this.cache.get(id)?.partial) resolve(this.cache.get(id)!);
             else this.client.api.get(`/servers/${this.server.id}/members/${id}` ).then(async (res) => {
                 const user = await this.client.users.fetch(id);
                 const member = new Member(this.server, res.data, user, this.client);
-                if(!this.cache.has(id) || this.cache.get(id)?.partial) this.cache.set(id, member);
+                this.cache.set(id, member);
                 resolve(member);
             }).catch((err) => console.error(`Axios /servers/${this.server.id}/members/${id} Error on ServersManager`, new Error(err.message)));
         });

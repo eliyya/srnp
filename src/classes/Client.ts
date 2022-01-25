@@ -4,6 +4,8 @@ import { UsersManager } from "../managers/UsersManager";
 import axios, { AxiosInstance } from "axios";
 import { ServersManager } from "../managers/ServersManager";
 import { ChannelsManager } from "../managers/ChannelsManager";
+import { UserApiType } from './User'
+import { User } from "..";
 
 export interface ClientOptions {
     wsURL?: string;
@@ -33,6 +35,7 @@ export class Client extends EventEmitter {
     apiURL: string;
     token: string = "";
     reconnect: boolean;
+    user?: User;
     constructor(opt?: ClientOptions) {
         super();
         this.wsURL = opt?.wsURL ?? "wss://ws.revolt.chat?format=json";
@@ -108,6 +111,8 @@ export class Client extends EventEmitter {
                 headers: { "Content-Type": "application/json", "x-bot-token": this.token },
             });
             await this._initWS(this.wsURL);
+            const res = await this.api.get('/users/@me');
+            this.user = await this.users.fetch((res.data as UserApiType)._id);
             this.emit("ready", this);
         });
     }
