@@ -46,7 +46,7 @@ export class Member {
                     this.avatar = member.avatar;
                     resolve(this);
                 })
-                .catch((err) => console.error);
+                .catch((err) => reject(err.toString()));
         });
     }
 }

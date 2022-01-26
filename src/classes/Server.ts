@@ -87,7 +87,7 @@ export class Server {
                     await this.members.initMembers()
                     resolve(this);
                 })
-                .catch((err) => console.error(`Axios /server/${this.id} Error`, new Error(err.message)))
+                .catch((err) => reject(err.toString()))
         });
     }
 }

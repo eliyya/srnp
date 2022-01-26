@@ -1,4 +1,4 @@
-import { Client } from "./Client";
+import { Client, Presence } from "./Client";
 
 export class User {
     id: string;
@@ -12,7 +12,10 @@ export class User {
         status: RelationShip;
         id: string;
     }[];
-    status?: unknown;
+    status: {
+        text?: string;
+        presence?: Presence;
+    } = {};
     flags?: UserFlag;
     bot?: {
         owner: User;
@@ -50,7 +53,7 @@ export class User {
                     this.avatar = user.avatar;
                     resolve(this);
                 })
-                .catch((err) => console.error);
+                .catch((err) => reject(err.toString()));
         });
     }
 }
@@ -65,7 +68,10 @@ export interface UserApiType {
         status: RelationShip;
         id: string;
     }[];
-    status?: unknown;
+    status: {
+        text?: string;
+        presence?: Presence;
+    };
     flags?: UserFlag;
     bot?: {
         owner: string;

@@ -42,7 +42,7 @@ export class TextChannel extends Channel {
                     this.partial = false;
                     resolve(this);
                 })
-                .catch((err) => console.error(`Axios /channel/${this.id} Error`, new Error(err.message)))
+                .catch((err) => reject(err.toString()))
         });
     }
 }
