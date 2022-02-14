@@ -1,6 +1,4 @@
-import { User } from "./User";
-import { Client } from "./Client";
-import { Server } from "./Server";
+import { User, Client, Server } from "../index";
 
 export interface MemberApiType {
     _id: { server: string; user: string };

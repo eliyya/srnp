@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# v0.0.8
+
+## Features
+
+- **Messaging:** Added `send` method in the `TextChannel` class; `<TextChannel>.send(string | SendOptions)`
+
 # v0.0.7
 
 ## Features

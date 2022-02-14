@@ -3,6 +3,7 @@ export * from './classes/Server'
 export * from './classes/User'
 export * from './classes/Channel'
 export * from './classes/TextChannel'
+export * from './classes/Message'
 export * from './classes/Member'
 
 export * from './managers/ChannelsManager'
@@ -10,3 +11,5 @@ export * from './managers/ServersManager'
 export * from './managers/TextChannelsManager'
 export * from './managers/UsersManager'
 export * from './managers/MembersManager'
+
+export * from './classes/Embed'

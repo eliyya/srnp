@@ -1,5 +1,4 @@
-import { Server } from "./Server";
-import { Client } from "./Client";
+import { Client } from "../index";
 
 export class Channel {
     id: string;
